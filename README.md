@@ -14,9 +14,9 @@
 
 
 ## Guide étapes clés
-- `Étape 0 : Installez l’environnement de développement` 🔴
+- `Étape 0 : Installez l’environnement de développement` 🟢
 
-- `Étape 1 : Créez la page de présentation des travaux à partir du HTML existant` 🔴
+- `Étape 1 : Créez la page de présentation des travaux à partir du HTML existant` 🟠
 
 - `Étape 2 : Codez la page de connexion` 🔴
 
