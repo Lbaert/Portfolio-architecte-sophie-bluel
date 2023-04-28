@@ -78,7 +78,7 @@ h1 > span {
 ;
 }
 
-h2{
+h2, #filtres{
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 30px;
@@ -186,3 +186,40 @@ footer nav ul {
 	margin: 2em
 }
 
+section.filters {
+	display: flex;
+    justify-content: center;
+}
+
+.filters button {
+	margin: 0 5px;
+	padding: 10px;
+	font-family: 'Syne';
+    font-weight: 700;
+    font-size: 16px;
+    color: #1D6154;
+	border: 1px solid #1D6154;
+	border-radius: 60px;
+}
+
+.filters button:hover {
+    background-color: #1D6154;
+	color: white;
+}
+
+header a{
+	text-decoration: none;
+	color: black;
+}
+
+header a:hover{
+	font-weight: 600;
+}
+
+footer {
+	background-color: #f2f2f2;
+}
+
+body {
+	background: #fffaf5
+}
