@@ -1,34 +1,36 @@
-// Fonction d'envoi du formulaire de login
+//envoi formulaire login
 function login() {
-    const login = document.querySelector("#login");
-    login.addEventListener("submit", function(event) {
-        // On empêche la page de rafraichir immédiatement
+    const login = document.querySelector("#loginForm");
+    login.addEventListener("submit", (event) => {
+        //ne pas rafraichir la page
         event.preventDefault();
-        // Création des infos de login
+        //infos de login
         const loginInfo = {
             email: email.value,
             password: password.value
         };
-        // Conversion en JSON de loginInfo
+        //conversion en JSON de loginInfo
         const chargeUtile = JSON.stringify(loginInfo);
-        console.log(loginInfo); // Vérification des infos envoyées
-        // Envoi de la demande de connexion
+        //vérification des infos envoyées
+        console.log(loginInfo); 
+        //envoi de la demande de connexion
         fetch('http://localhost:5678/api/users/login', { 
             method: "POST",
             headers: {"Content-type": "application/json"},
             body: chargeUtile
-        }).then(response => response.json().then(r => ({status: response.status, body: r}))) //Séparation du status et du token
+        //séparation du status et du token
+        }).then(response => response.json().then(rep => ({status: response.status, body: rep}))) 
         .then(data => {
-            console.log(data.status); // Vérification du code serveur
+            //vérification du code server
+            console.log(data.status); 
             if (data.status === 200) {
+                //stocker le token
                 window.sessionStorage.setItem("token", data.body.token);
                 console.log(data.body.token);
                 window.location.replace("./index.html");
-            }if (data.status === 401) {
-                alert("Mot de passe incorrect");
-            }if (data.status === 404) {
-                alert("Utilisateur inconnu. Vérifiez l'e-mail")
-            };
+            }else{
+                alert("Erreur dans l’identifiant ou le mot de passe");
+            }
         });
     });
 };
