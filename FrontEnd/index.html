@@ -12,6 +12,12 @@
 	<script src="index.js"></script>
 </head>
 <body>
+<div class="admin">
+	<ul>
+		<li><i></i><a href="#">Mode édition</a></li>
+		<li><a href="#">publier les changements</a></li>
+	</ul>
+</div>
 <header>
 		<h1>Sophie Bluel<span>Architecte d'inteérieur</span></h1>
 	<nav>
@@ -26,7 +32,7 @@
 <main>
 	<section id="introduction">
 		<figure>
-			<img src="./assets/images/sophie-bluel.png" alt="">
+			<img src="./assets/images/sophie-bluel.png" alt="photo de Sophie Bluel">
 		</figure>
 		<article>
 			<h2>Designer d'espace</h2>
@@ -37,6 +43,19 @@
 	</section>
 	<section id="portfolio">
 		<h2>Mes Projets</h2>
+		
+		<div><button id="admin" attribut="data-target">Modifier</button>
+		</div>
+		<!-- création modale -->
+		<div id="modalAjoutTravail" class="modal">
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<p>Ajouter un travail</p>
+				<!-- ajouter ici le formulaire d'ajout de travail -->
+			</div>
+		</div>
+
+
 		<section class="filters">
 			<button class="btn-all">Tous</button>
 			<button class="btn-objets">Objets</button>
@@ -60,7 +79,6 @@
 		</form>
 	</section>
 </main>
-</body>
 <footer>
 	<nav>
 		<ul>
@@ -68,4 +86,5 @@
 		</ul>
 	</nav>
 </footer>
+</body>
 </html>

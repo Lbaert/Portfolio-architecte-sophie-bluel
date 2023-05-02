@@ -2,7 +2,6 @@
 async function getWorks(){
     const works = await fetch('http://localhost:5678/api/works');
     let worksToDisplay = await works.json();
-
     console.log(works.status);
     console.log(worksToDisplay);
     generateGallery(worksToDisplay);
@@ -72,3 +71,30 @@ function generateGallery(works){
 }
 
 getWorks();
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Récupération des éléments HTML
+    var btnModifier = document.getElementById("admin");
+    var modalAjoutTravail = document.getElementById("admin");
+    var spanClose = document.getElementsByClassName("admin")[0];
+
+    // Ouverture de la modale 
+    btnModifier.onclick = function() {
+        // Code à exécuter lors du clic sur le bouton "Modifier"
+    }
+    // Fermeture de la modale 
+	spanClose.onclick = function() {
+		modalAjoutTravail.style.display = "none";
+	}
+    window.onclick = function(event) {
+		if (event.target == modalAjoutTravail) {
+			modalAjoutTravail.style.display = "none";
+		}
+	}
+});
+
