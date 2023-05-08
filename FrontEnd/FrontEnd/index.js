@@ -5,7 +5,6 @@ async function getWorks(){
     console.log(works.status);
     console.log(worksToDisplay);
     generateGallery(worksToDisplay);
-    generateGallery2(worksToDisplay);
 
     // Gestion du bouton All, ajout/suppression class active
     const boutonAll = document.querySelector(".btn-all")
