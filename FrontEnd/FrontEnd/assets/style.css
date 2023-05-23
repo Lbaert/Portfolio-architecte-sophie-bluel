@@ -161,7 +161,14 @@ margin: auto;
 	flex-direction: column;
 }
 
-#contact input {
+#form_photo {
+	text-align: left;
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+}
+
+#contact input, #titre_form, #categorie_form {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
@@ -360,7 +367,7 @@ height: 20px;
 }
 
 
-#modalProjet, #modalPhoto, #modalText {
+#modalProjet, #modalPhoto, #modalText, .modale_projets {
 	position: fixed; 
 	z-index: 1;
 	left: 0;
@@ -374,21 +381,35 @@ height: 20px;
   }
 
    /* Modal Content/Box */
-   .modalContent {
+   .modalContent, .window_modale {
 	background-color: #fff;
-	margin: 15% auto; 
-	padding: 20px;
+	margin: 6% auto; 
+	padding: 50px 80px;
 	border: 1px solid #888;
-	width: 600px;
+	width: 630px;
+	border-radius: 5px;
   }
+
+  .modalContent img {
+	width: 100%;
+  }
+
+  .modalContent h2,  #title_modale{
+	font-family: 'work sans';
+    color: black;
+  }
+
+
     /* The Close Button */
 	.closeProjet, 
 	.closePhoto,
-	.closeText {
+	.closeText,
+	.closeProjet2 {
 		color: #aaa;
 		float: right;
 		font-size: 28px;
 		font-weight: bold;
+		cursor: pointer;
 	  }
 	  
 	  .closeProjet:hover,
@@ -396,7 +417,9 @@ height: 20px;
 	  .closePhoto:focus,
 	  .closePhoto:hover,
 	  .closeText:focus,
-	  .closeText:hover {
+	  .closeText:hover,
+	  .closeProjet2:hover
+	  .closeProjet2:focus {
 		color: black;
 		text-decoration: none;
 		cursor: pointer;
@@ -404,14 +427,171 @@ height: 20px;
 
 
 	  .modale_gallery {
-		width: 100%;
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr;
+		display: flex;
+		grid-row-gap: 5px;
 		grid-column-gap: 20px;
-		grid-row-gap: 20px;
+		flex-wrap: wrap;
+		margin: 80px 0;
+	}
+	.modale_gallery figcaption {
+		display: flex;
+		align-items: start;
+	}
+
+	.modale_gallery figure {
+		flex-basis: 17%;
 	}
 	
-	.modale_gallery img {
-		width: 100%;
-	
+	.btn_editor {
+		border-top: 2px solid #B3B3B3;
+		margin-top: 10px;
+		padding: 10px 30px;
+		display: flex;
+		flex-direction: column;
 	}
+
+	.btn_editor2 {
+		border-top: 2px solid #B3B3B3;
+		margin-top: 50px;
+		padding-top: 30px;
+		padding-bottom: 0;
+		display: flex;
+		flex-direction: column;
+	}
+
+	#add_photo, #valider_photo {
+	font-family: 'Syne';
+    color: white;
+    background-color: #1D6154;
+    margin: 2em auto;
+    width: 200px;
+	padding: 10px;
+    border-radius: 60px;
+	border: none;
+	cursor: pointer;
+	}
+
+	#delete_gallery {
+		border: none;
+		background: none;
+		font-family: 'Syne';
+		color: red;
+		cursor: pointer;
+	}
+
+	.gallery-item {
+		display: flex;
+		flex-direction: column;
+		position: relative;
+	  }
+	  
+	  .button-container {
+		align-self: flex-end;
+		position: absolute;
+		top: 5px;
+		right: 5px;
+	  }
+
+	  .move-button {
+		position: absolute;
+		right: 20px;
+	  }
+	  
+	  .move-button {
+		padding: 5px;
+		border: none;
+		background: none;
+		color: white;
+		background-color: #000;
+		font-size: 10px;
+		cursor: pointer;
+		border-radius: 5px;
+	  }
+
+	  .edit-button {
+		padding: 5px;
+		border: none;
+		background: none;
+		color: white;
+		background-color: #000;
+		font-size: 10px;
+		cursor: pointer;
+		border-radius: 5px;
+		width: 20px;
+		position: absolute;
+		top: 4px;
+		left: 84px;
+	  }
+
+	  .move-button {
+		display: none; /* Masquer le bouton par défaut */
+	  }
+	  
+	  .gallery-item:hover .move-button {
+		display: block; /* Afficher le bouton lors du survol de l'élément */
+	  }
+
+#drag_image {
+	background: #E8F1F6;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#drag_image p {
+	margin-bottom: 20px;
+}
+
+#photo_form {
+	display: none;
+}
+	  
+.custom_button {
+	font-family: 'Syne';
+	color: #306685;
+	background-color: #CBD6DC;
+	width: 150px;
+	padding: 10px;
+	border-radius: 60px;
+	border: none;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+}
+
+#retour {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+	color: grey;
+}
+
+#drag_image .fa-image {
+	font-size: 70px;
+	color: #B9C5CC;
+	margin-top: 20px;
+}
+
+.btn_delete {
+	display: none;
+}
+
+#apercuPhoto {
+	object-fit: cover;
+	height: 100%;
+	max-width: 100%;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+#apercuPhotoDiv {
+	position: absolute;
+	background-color: #e8f1f6;
+	width: 20%;
+	height: 182px;
+}

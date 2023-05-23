@@ -1,124 +1,146 @@
 <!DOCTYPE html>
 <html lang="fr">
-	<head>
-		<meta charset="UTF-8">
-		<title>Sophie Bluel - Architecte d'intérieur</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
-		<meta name="description" content="">
-		<link rel="stylesheet" href="./assets/style.css">
-		<script type="module" src="index.js"></script>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
-	</head>
-	<body>
-		<div class="black-bar" id="black-bar">
-			<!--barre noire d'édition ici-->
-		</div>
-		<header>
-			<h1>Sophie Bluel<span>Architecte d'intérieur</span></h1>
-			<nav>
-				<ul id="btnheader">
-					<li><a href="#portfolio" class="btn active">projets</a></li>
-					<li><a href="#contact" class="btn">contact</a></li>
-					<li><a href="./login.html" id="loginButton" class="btn">login</a></li>
-					<li><img src="./assets/icons/instagram.png" alt="Instagram" class="btnimg"></li>
-				</ul>
-			</nav>
-		</header>
-		<main>
-			<section id="introduction">
-				<figure id="intro-photo">
-					<img src="./assets/images/sophie-bluel.png" alt="photo de Sophie Bluel">
-					<!--Bouton modifier ici-->
-				</figure>
-				<aside id="modalPhoto" style="display: none;">
-					<section class="modalContent">
-						<span class="closePhoto">&times;</span>
-						<h2>Galerie photo</h2>
-						<div class="modale_gallery">
-							<!--Galerie de la modale ici-->
-						</div>
-						<div class="btn_editor">
-							<button id="add_photo">Ajouter une photo</button>
-							<button id="delete_gallery">Supprimer la galerie</button>
-						</div>
-					</section>
-				</aside>
-				<article id="text">
-					<h2>Designer d'espace</h2>
-					<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
-					<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
-					<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
-				</article>
-				<aside id="modalText" style="display: none;">
-					<section class="modalContent">
-						<span class="closeText">&times;</span>
-						<h2>Galerie photo</h2>
-						<div class="modale_gallery">
-							<!--Galerie de la modale ici-->
-						</div>
-						<div class="btn_editor">
-							<button id="add_photo">Ajouter une photo</button>
-							<button id="delete_gallery">Supprimer la galerie</button>
-						</div>
-					</section>
-				</aside>
-			</section>
-			<section id="portfolio">
-
-				
-				<div id="projet">
-					<h2>Mes Projets</h2>
-					<!--Bouton modifier ici-->
-				</div>
-				<aside id="modalProjet" style="display: none;">
-					<section class="modalContent">
-						<span class="closeProjet">&times;</span>
-						<h2>Galerie photo</h2>
-						<div class="modale_gallery">
-							<!--Galerie de la modale ici-->
-						</div>
-						<div class="btn_editor">
-							<button id="add_photo">Ajouter une photo</button>
-							<button id="delete_gallery">Supprimer la galerie</button>
-						</div>
-					</section>
-				</aside>
-
-
-
-				<section class="filters" id="filters">
-					<button class="btn-all active">Tous</button>
-					<button class="btn-objets">Objets</button>
-					<button class="btn-appartements">Appartements</button>
-					<button class="btn-hotelresto">Hôtels & restaurants</button>
-				</section>
-				<div class="gallery">
-					<!--Galerie de la modale ici-->
-				</div>
-			</section>
-			<section id="contact">
-				<h2>Contact</h2>
-				<p>Vous avez un projet ? Discutons-en !</p>
-				<form action="#" method="post">
-					<label for="name">Nom</label>
-					<input type="text" name="name" id="name">
-					<label for="email">Email</label>
-					<input type="email" name="email" id="email">
-					<label for="message">Message</label>
-					<textarea name="message" id="message" cols="30" rows="10"></textarea>
-					<input type="submit" value="Envoyer">
-				</form>
-			</section>
-		</main>
-		<footer>
-			<nav>
-				<ul>
-					<li>Mentions Légales</li>
-				</ul>
-			</nav>
-		</footer>
-	</body>
+<head>
+  <meta charset="UTF-8">
+  <title>Sophie Bluel - Architecte d'intérieur</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="./assets/style.css">
+  <script type="module" src="index.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body>
+  <div class="black-bar" id="black-bar">
+    <!-- Barre noire d'édition ici -->
+  </div>
+  <header>
+    <h1>Sophie Bluel<span>Architecte d'intérieur</span></h1>
+    <nav>
+      <ul id="btnheader">
+        <li><a href="#portfolio" class="btn active">projets</a></li>
+        <li><a href="#contact" class="btn">contact</a></li>
+        <li><a href="./login.html" id="loginButton" class="btn">login</a></li>
+        <li><img src="./assets/icons/instagram.png" alt="Instagram" class="btnimg"></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="introduction">
+      <figure id="intro-photo">
+        <img src="./assets/images/sophie-bluel.png" alt="photo de Sophie Bluel">
+        <!-- Bouton modifier ici -->
+      </figure>
+      <aside id="modalPhoto" style="display: none;">
+        <section class="modalContent">
+          <span class="closePhoto">&times;</span>
+          <h2>Galerie photo</h2>
+          <div class="modale_gallery3">
+            <!-- Galerie de la modale ici -->
+          </div>
+          <div class="btn_editor">
+          </div>
+        </section>
+      </aside>
+      <article id="text">
+        <h2>Designer d'espace</h2>
+        <p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
+        <p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
+        <p>En cas de besoin, une équipe pluridisciplinaire peut être constituée : architecte DPLG, décorateur(trice)</p>
+      </article>
+      <aside id="modalText" style="display: none;">
+        <section class="modalContent">
+          <span class="closeText">&times;</span>
+          <h2>Galerie photo</h2>
+          <div class="modale_gallery2">
+            <!-- Galerie de la modale ici -->
+          </div>
+          <div class="btn_editor">
+          </div>
+        </section>
+      </aside>
+    </section>
+    <section id="portfolio">
+      <div id="projet">
+        <h2>Mes Projets</h2>
+        <!-- Bouton modifier ici -->
+      </div>
+      <aside id="modalProjet" style="display: none;">
+        <section class="modalContent">
+          <span class="closeProjet">&times;</span>
+          <h2>Galerie photo</h2>
+          <div class="modale_gallery">
+            <!-- Galerie de la modale ici -->
+          </div>
+          <div class="btn_editor">
+            <button id="add_photo">Ajouter une photo</button>
+            <button id="delete_gallery">Supprimer la galerie</button>
+          </div>
+        </section>
+      </aside>
+      <aside class="modale_projets" id="modale2" style="display: none;">
+        <!-- Fenêtre d'ajout des photos -->
+        <section class="window_modale" id="outsideModale2">
+          <button id="retour"><i class="fa-solid fa-arrow-left"></i></button>
+          <span class="closeProjet2">&times;</span>
+          <h2 id="title_modale">Ajout photo</h2>
+          <form id="form_photo">
+            <div id="drag_image">
+              <div id="apercuPhotoDiv" style="display: none;">
+                <img id="apercuPhoto"> <!-- Aperçu de la photo uploadée ici -->
+              </div>
+              <i class="fa-regular fa-image"></i>
+              <label for="photo_form" class="custom_button">+ Ajouter photo</label>
+              <input type="file" name="image" accept=".jpg, .jpeg, .png" id="photo_form" required>
+              <p>jpg, png : 4 Mo max</p>
+            </div>
+            <label for="titre_form">Titre</label>
+            <input type="text" required name="title" id="titre_form">
+            <label for="categorie_form">Catégorie</label>
+            <select name="category" id="categorie_form">
+              <option value="" disabled selected hidden>Sélectionnez une catégorie</option>
+              <option value="1">Objets</option>
+              <option value="2">Appartements</option>
+              <option value="3">Hôtels & restaurants</option>
+            </select>
+            <div class="btn_editor2">
+              <input type="submit" value="Valider" id="valider_photo">
+            </div>
+          </form>
+        </section>
+      </aside>
+      <section class="filters" id="filters">
+        <button class="btn-all active">Tous</button>
+        <button class="btn-objets">Objets</button>
+        <button class="btn-appartements">Appartements</button>
+        <button class="btn-hotelresto">Hôtels & restaurants</button>
+      </section>
+      <div class="gallery">
+        <!-- Galerie de la modale ici -->
+      </div>
+    </section>
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Vous avez un projet ? Discutons-en !</p>
+      <form action="#" method="post">
+        <label for="name">Nom</label>
+        <input type="text" name="name" id="name">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email">
+        <label for="message">Message</label>
+        <textarea name="message" id="message" cols="30" rows="10"></textarea>
+        <input type="submit" value="Envoyer">
+      </form>
+    </section>
+  </main>
+  <footer>
+    <nav>
+      <ul>
+        <li>Mentions Légales</li>
+      </ul>
+    </nav>
+  </footer>
+</body>
 </html>
