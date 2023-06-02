@@ -67,50 +67,52 @@
         <h2>Mes Projets</h2>
         <!-- Bouton modifier ici -->
       </div>
-      <aside id="modalProjet" style="display: none;">
-        <section class="modalContent">
-          <span class="closeProjet">&times;</span>
-          <h2>Galerie photo</h2>
-          <div class="modale_gallery">
-            <!-- Galerie de la modale ici -->
-          </div>
-          <div class="btn_editor">
-            <button id="add_photo">Ajouter une photo</button>
-            <button id="delete_gallery">Supprimer la galerie</button>
-          </div>
-        </section>
-      </aside>
-      <aside class="modale_projets" id="modale2" style="display: none;">
-        <!-- Fenêtre d'ajout des photos -->
-        <section class="window_modale" id="outsideModale2">
-          <button id="retour"><i class="fa-solid fa-arrow-left"></i></button>
-          <span class="closeProjet2">&times;</span>
-          <h2 id="title_modale">Ajout photo</h2>
-          <form id="form_photo">
-            <div id="drag_image">
-              <div id="apercuPhotoDiv" style="display: none;">
-                <img id="apercuPhoto"> <!-- Aperçu de la photo uploadée ici -->
+      <div class="modale_gallery2" id="modale_gallery2">
+        <aside id="modalProjet" style="display: none;">
+          <section class="modalContent">
+            <span class="closeProjet">&times;</span>
+            <h2>Galerie photo</h2>
+            <div class="modale_gallery">
+              <!-- Galerie de la modale ici -->
+            </div>
+            <div class="btn_editor">
+              <button id="add_photo">Ajouter une photo</button>
+              <button id="delete_gallery">Supprimer la galerie</button>
+            </div>
+          </section>
+        </aside>
+        <aside class="modale_projets" id="modale2" style="display: none;">
+          <!-- Fenêtre d'ajout des photos -->
+          <section class="window_modale" id="outsideModale2">
+            <button id="retour"><i class="fa-solid fa-arrow-left"></i></button>
+            <span class="closeProjet2">&times;</span>
+            <h2 id="title_modale">Ajout photo</h2>
+            <form id="form_photo" method="POST" enctype="multipart/form-data">
+              <div id="drag_image">
+                <div id="apercuPhotoDiv" style="display: none;">
+                  <img id="apercuPhoto"> <!-- Aperçu de la photo uploadée ici -->
+                </div>
+                <i class="fa-regular fa-image"></i>
+                <label for="photo_form" class="custom_button">+ Ajouter photo</label>
+                <input type="file" name="image" accept=".jpg, .jpeg, .png" id="photo_form" required>
+                <p>jpg, png : 4 Mo max</p>
               </div>
-              <i class="fa-regular fa-image"></i>
-              <label for="photo_form" class="custom_button">+ Ajouter photo</label>
-              <input type="file" name="image" accept=".jpg, .jpeg, .png" id="photo_form" required>
-              <p>jpg, png : 4 Mo max</p>
-            </div>
-            <label for="titre_form">Titre</label>
-            <input type="text" required name="title" id="titre_form">
-            <label for="categorie_form">Catégorie</label>
-            <select name="category" id="categorie_form">
-              <option value="" disabled selected hidden>Sélectionnez une catégorie</option>
-              <option value="1">Objets</option>
-              <option value="2">Appartements</option>
-              <option value="3">Hôtels & restaurants</option>
-            </select>
-            <div class="btn_editor2">
-              <input type="submit" value="Valider" id="valider_photo">
-            </div>
-          </form>
-        </section>
-      </aside>
+              <label for="titre_form">Titre</label>
+              <input type="text" required name="title" id="titre_form">
+              <label for="categorie_form">Catégorie</label>
+              <select name="category" id="categorie_form">
+                <option value="" disabled selected hidden>Sélectionnez une catégorie</option>
+                <option value="1">Objets</option>
+                <option value="2">Appartements</option>
+                <option value="3">Hôtels & restaurants</option>
+              </select>
+              <div class="btn_editor2">
+                <input type="submit" value="Valider" id="valider_photo">
+              </div>
+            </form>
+          </section>
+        </aside>
+      </div>
       <section class="filters" id="filters">
         <button class="btn-all active">Tous</button>
         <button class="btn-objets">Objets</button>

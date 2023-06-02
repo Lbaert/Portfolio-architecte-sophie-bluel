@@ -81,7 +81,13 @@ boutonHotelresto.addEventListener("click", function() {
 
 // Fonction génération projet
 function generateGallery(works) {
-    for (let i = 0; i < works.length; i++) {
+  const galleryElement = document.querySelector(".gallery");
+  // Efface le contenu existant de l'élément uniquement si c'est la première génération de la galerie
+  if (galleryElement.innerHTML === "") {
+    galleryElement.innerHTML = "";
+  }
+
+  for (let i = 0; i < works.length; i++) {
         const work = works[i];
         // Récupération de l'élément du DOM qui accueillera les gallery
         const divGallery = document.querySelector(".gallery");
@@ -245,12 +251,10 @@ async function getWorksModal() {
 
 ///
 
-let galleryGenerated = false; // Variable pour suivre si la galerie a été générée
 
 function generateGallery2(works) {
-  if (galleryGenerated) {
-    return; // Si la galerie a déjà été générée, arrêtez l'exécution de la fonction
-  }
+  const galleryElement = document.querySelector(".modale_gallery");
+  galleryElement.innerHTML = ""; // Efface le contenu existant de l'élément
 
   for (let i = 0; i < works.length; i++) {
     const work = works[i];
@@ -293,7 +297,6 @@ function generateGallery2(works) {
     workElement.appendChild(deleteElement);
   }
 
-  galleryGenerated = true; // Définir la variable à true pour indiquer que la galerie a été générée
 
 ////////
 ////////
@@ -310,9 +313,6 @@ function generateGallery2(works) {
 ////////
 ////////
 
-  /////////////////////////// j'arrive pas afficher la modale2 apres avoir submit 
-                          /// Ajouter une photo ///
-
 // Récupération du bouton "Ajouter une photo"
 const addPhotoButton = document.getElementById("add_photo");
 
@@ -328,7 +328,7 @@ addPhotoButton.addEventListener("click", function() {
 });
 
 // Formulaire pour ajouter une photo
-document.querySelector("#form_photo").addEventListener("submit", async function(e) {
+async function handleFormSubmit(e) {
   e.preventDefault();
 
   // Vérifier si une catégorie est sélectionnée
@@ -339,14 +339,17 @@ document.querySelector("#form_photo").addEventListener("submit", async function(
   }
 
   // Affichage de la modale2 pour montrer le chargement
-  modale2.style.display = "block";
+  modale1.style.display = "block";
+  modale2.style.display = "none";
 
   // Préparation des données à envoyer
   let infosPhoto = new FormData();
   infosPhoto.append('image', photo_form.files[0]);
   infosPhoto.append('title', titre_form.value);
   infosPhoto.append('category', categorie);
+  
   const token = window.sessionStorage.getItem("token");
+  console.log(infosPhoto);
   const options = {
     method: 'POST',
     body: infosPhoto,
@@ -357,32 +360,43 @@ document.querySelector("#form_photo").addEventListener("submit", async function(
   };
   delete options.headers['Content-Type'];
 
-  // Envoi de la requête pour ajouter la photo
-  await fetch('http://localhost:5678/api/works', options);
+  try {
+    // Envoi de la requête pour ajouter la photo
+    await fetch('http://localhost:5678/api/works', options);
 
-  // Réinitialisation des champs et des aperçus
-  titre_form.value = "";
-  const cache = document.querySelector("#apercuPhotoDiv");
-  cache.setAttribute("style", "display: none");
-  const cache2 = document.querySelector("#apercuPhoto");
-  cache2.src = "";
-  const target = document.querySelector("#modale2");
-  //target.style.display = "none";
-  const target2 = document.querySelector(".gallery");
-  target2.innerText = "";
+        // Réinitialisation des champs du formulaire
+        titre_form.value = "";
+        photo_form.value = ""; 
+        categorie_form.selectedIndex = 0;
+        const cache = document.querySelector("#apercuPhotoDiv");
+        cache.style.display = "none";
+        const cache2 = document.querySelector("#apercuPhoto");
+        cache2.src = "";
 
-  // Mise à jour de la galerie principale
-  works = await fetch('http://localhost:5678/api/works').then(works => works.json());
-  generateGallery(works);
+    // Récupérer les données de la galerie mise à jour
+    const works = await fetch('http://localhost:5678/api/works').then(works => works.json());
 
-  // Mise à jour de la galerie dans la modale2
-  const target3 = document.querySelector(".modale_gallery");
-  target3.innerText = "";
-  generateGallery2(works);
+    // Mise à jour de la galerie principale en ajoutant la nouvelle photo à la liste existante
+    generateGallery;
 
-  // Réattacher les écouteurs d'événements pour les boutons de suppression
-  deleteWork();
-});
+    // Mise à jour de la galerie dans la modale2 en ajoutant la nouvelle photo à la liste existante
+    const target3 = document.querySelector(".modale_gallery");
+    generateGallery2;
+
+    // Réinitialisation du formulaire
+    document.getElementById("form_photo").reset();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// Formulaire pour ajouter une photo
+document.querySelector("#form_photo").removeEventListener("submit", handleFormSubmit);
+document.querySelector("#form_photo").addEventListener("submit", handleFormSubmit);
+
+
+
+
 
 // Fermer modale2
 var span2 = document.getElementsByClassName("closeProjet2")[0];
@@ -427,7 +441,7 @@ uploadLimit.onchange = function() {
 ////////
 ////////
 
-//////////////////////////////je narrive pas a faire en sorte que la modale reste ouverte apres suppression
+
                           /// Supprimer une photo ///
 function deleteWork() {
   // Sélectionner tous les boutons de suppression
@@ -467,6 +481,9 @@ function deleteWork() {
       } catch (error) {
         console.log(error);
       }
+      const target2 = document.querySelector(".modale_gallery");
+      target2.innerText = "";
+      getWorksModal();
     });
   }
 }
