@@ -87,31 +87,50 @@ function generateGallery(works) {
     galleryElement.innerHTML = "";
   }
 
-  for (let i = 0; i < works.length; i++) {
-        const work = works[i];
-        // Récupération de l'élément du DOM qui accueillera les gallery
-        const divGallery = document.querySelector(".gallery");
-        // Création d’une balise figure
-        const workElement = document.createElement("figure");
-        // Création d’une balise img avec la source et son titre
-        const imgElement = document.createElement("img");
-        imgElement.src = work.imageUrl;
-        imgElement.alt = work.imageTitle;
-        // Création d’une balise figcaption avec récupération du contenu 
-        const captionElement = document.createElement("figcaption");
-        captionElement.innerText = work.title;
-        // On rattache la balise article a la section gallery
-        divGallery.appendChild(workElement);
-        workElement.appendChild(imgElement);
-        workElement.appendChild(captionElement);
 
-        // Ajoute un gestionnaire d'événements pour fermer la modale sur la croix
-        const span = document.getElementsByClassName("closeProjet")[0];
-        span.onclick = function() {
-            modalProjet.style.display = "none";
-        };
-    }
+  for (let i = 0; i < works.length; i++) {
+    const work = works[i];
+    // Récupération de l'élément du DOM qui accueillera les galeries
+    const divGallery = document.querySelector(".gallery");
+    // Création d'une balise figure
+    const workElement = document.createElement("figure");
+    workElement.classList.add("gallery-item2"); // Ajoute une classe pour le positionnement CSS
+    // Création d'une balise img avec la source et son titre
+    const imgElement = document.createElement("img");
+    imgElement.src = work.imageUrl;
+    imgElement.alt = work.imageTitle;
+    imgElement.id = `img_${work.id}`; // Ajout de l'ID à l'élément img
+
+    // Création d'une balise figcaption avec récupération du contenu
+    const captionElement = document.createElement("figcaption");
+    captionElement.innerText = work.title;
+
+    // On rattache la balise figure à la section gallery
+    divGallery.appendChild(workElement);
+    workElement.appendChild(imgElement);
+    workElement.appendChild(captionElement);
+
+    // Ajoute un gestionnaire d'événements pour fermer la modale sur la croix
+    const span = document.getElementsByClassName("closeProjet")[0];
+    span.onclick = function() {
+      modalProjet.style.display = "none";
+    };
+
+      // recuperer le boutton supprimer qui a un identifiant similaire que l'id du projet 
+      //const element = document.querySelector(`#img_${id}`)
+      // recuperer le parent le plus proche avec la class .gallery-item2
+      //const parent = element.closest('.gallery-item2')
+      // supprimer le parent qui est dans notre cas la figure 
+      //parent.remove();
+
+       // recuperer la figure qui a l'identifiant du projet supprimé 
+      //const figure = document.querySelector(`${id}`)
+      // supprimer la figure
+      //figure.remove();
+  
+  }
 }
+
 getWorks();
 
 ////////
@@ -327,7 +346,7 @@ addPhotoButton.addEventListener("click", function() {
   modale1.style.display = "none";
 });
 
-// Formulaire pour ajouter une photo
+
 async function handleFormSubmit(e) {
   e.preventDefault();
 
@@ -362,7 +381,55 @@ async function handleFormSubmit(e) {
 
   try {
     // Envoi de la requête pour ajouter la photo
-    await fetch('http://localhost:5678/api/works', options);
+   const response =  await fetch('http://localhost:5678/api/works', options);
+
+   console.log(response)
+
+   if(response.ok) {
+    const work = await response.json();
+
+    console.log(work);
+
+    // Récupération de l'élément du DOM qui accueillera les galeries
+    const divGallery = document.querySelector(".modale_gallery");
+    // Création d'une balise figure
+    const workElement = document.createElement("figure");
+    workElement.classList.add("gallery-item"); // Ajoute une classe pour le positionnement CSS
+
+    // Création d'une balise img avec la source et son titre
+    const imgElement = document.createElement("img");
+    imgElement.src = work.imageUrl;
+    imgElement.alt = work.imageTitle;
+
+    // Création d'une balise pour le conteneur de bouton d'édition
+    const buttonContainer = document.createElement("div");
+    buttonContainer.classList.add("button-container");
+
+    // Création du bouton de déplacement
+    const moveButton = document.createElement("button-hover");
+    moveButton.classList.add("move-button");
+    moveButton.innerHTML = "<i class='fa-solid fa-arrows-up-down-left-right'></i>"; // Ajoute l'icône Font Awesome
+
+    // Création d'une balise figcaption avec récupération du contenu
+    const captionElement = document.createElement("figcaption");
+    captionElement.innerText = "éditer";
+
+    // Création du bouton de suppression
+    const deleteElement = document.createElement("button");
+    deleteElement.className = "edit-button"
+    deleteElement.innerHTML = "<i class='fas fa-trash'></i>"; // Ajoute l'icône Font Awesome
+    deleteElement.id = `delete_${work.id}`
+
+    console.log(work.id)
+
+    // On rattache les éléments à la section gallery
+    divGallery.appendChild(workElement);
+    workElement.appendChild(imgElement);
+    workElement.appendChild(buttonContainer);
+    buttonContainer.appendChild(moveButton);
+    workElement.appendChild(captionElement);
+    workElement.appendChild(deleteElement);
+   }
 
         // Réinitialisation des champs du formulaire
         titre_form.value = "";
@@ -373,15 +440,6 @@ async function handleFormSubmit(e) {
         const cache2 = document.querySelector("#apercuPhoto");
         cache2.src = "";
 
-    // Récupérer les données de la galerie mise à jour
-    const works = await fetch('http://localhost:5678/api/works').then(works => works.json());
-
-    // Mise à jour de la galerie principale en ajoutant la nouvelle photo à la liste existante
-    generateGallery;
-
-    // Mise à jour de la galerie dans la modale2 en ajoutant la nouvelle photo à la liste existante
-    const target3 = document.querySelector(".modale_gallery");
-    generateGallery2;
 
     // Réinitialisation du formulaire
     document.getElementById("form_photo").reset();
@@ -460,34 +518,57 @@ function deleteWork() {
 
       // Récupérer le jeton d'authentification
       const token = window.sessionStorage.getItem("token");
-
+        
       try {
         // Envoyer une requête DELETE pour supprimer la photo correspondante
-        await fetch(`http://localhost:5678/api/works/${id}`, {
+        const response = await fetch(`http://localhost:5678/api/works/${id}`, {
           method: "DELETE",
           headers: {
             "Authorization": `Bearer ${token}`,
             "Content-type": "application/json"
           }
         });
+        console.log(response)
 
-        // Récupérer les données de la galerie mise à jour
-        const works = await fetch("http://localhost:5678/api/works").then((response) => response.json());
 
-        // Générer la nouvelle galerie en utilisant les données mises à jour
-        const target = document.querySelector(".gallery");
-        target.innerText = "";
-        generateGallery(works);
-      } catch (error) {
-        console.log(error);
+
+        if(response.ok) {
+          // recuperer le boutton supprimer qui a un identifiant similaire que l'id du projet 
+          const element = document.querySelector(`#delete_${id}`)
+          // recuperer le parent le plus proche avec la class .gallery-item
+          const parent = element.closest('.gallery-item')
+          // supprimer le parent qui est dans notre cas la figure 
+          parent.remove();
+
+          // la meme chose mais avec les elements de la page d'accueil 
+          // TODO: ajouter l'id du projet comme identifiant pour chaque figure 
+           // recuperer la figure qui a l'identifiant du projet supprimé 
+          const figure = document.querySelector(`${id}`)
+          // supprimer la figure
+          figure.remove();
       }
-      const target2 = document.querySelector(".modale_gallery");
-      target2.innerText = "";
-      getWorksModal();
-    });
-  }
+
+      // Récupérer les données de la galerie mise à jour
+   //   const works = await fetch("http://localhost:5678/api/works").then((response) => response.json());
+
+      // Générer la nouvelle galerie en utilisant les données mises à jour
+     // const target = document.querySelector(".gallery");
+     // target.innerText = "";
+    //  generateGallery(works);
+    } catch (error) {
+      console.log(error);
+    }
+   // const target2 = document.querySelector(".modale_gallery");
+   // target2.innerText = "";
+    //getWorksModal();
+  });
+}
 }
 
 // Attacher les écouteurs d'événements pour les boutons de suppression lors du chargement de la page
 deleteWork();
 }
+
+// Formulaire pour supprimer une photo
+//document.querySelector("edit-button").removeEventListener("button", handleFormDelete);
+//document.querySelector("edit-button").addEventListener("button", handleFormDelete);
