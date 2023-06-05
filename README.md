@@ -20,9 +20,9 @@
 
 - `Étape 2 : Codez la page de connexion` 🟢
 
-- `Étape 3 : Ajoutez la modale` 🟠
+- `Étape 3 : Ajoutez la modale` 🟢
 
-- `Étape 4 : Vérifiez l’ensemble du projet et s’assurer du traitement des erreurs dans les formulaires` 🔴
+- `Étape 4 : Vérifiez l’ensemble du projet et s’assurer du traitement des erreurs dans les formulaires` 🟠
 
 
 
