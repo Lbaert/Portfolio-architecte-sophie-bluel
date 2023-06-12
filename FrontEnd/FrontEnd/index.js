@@ -133,6 +133,7 @@ function generateGallery(works) {
 
 getWorks();
 
+
 ////////
 ////////
 
@@ -315,6 +316,16 @@ function generateGallery2(works) {
     workElement.appendChild(captionElement);
     workElement.appendChild(deleteElement);
   }
+// Attacher les écouteurs d'événements pour les boutons de suppression lors du chargement de la page
+deleteWork();
+}
+
+
+async function updateGallery() {
+  const response = await fetch('http://localhost:5678/api/works');
+  const works = await response.json();
+  generateGallery(works);
+}
 
 
 ////////
@@ -387,6 +398,9 @@ async function handleFormSubmit(e) {
 
    if(response.ok) {
     const work = await response.json();
+    const galleryElement = document.querySelector(".gallery");
+    galleryElement.innerHTML = ""; // Efface le contenu existant de l'élément
+    updateGallery();
 
     console.log(work);
 
@@ -530,15 +544,16 @@ function deleteWork() {
         });
         console.log(response)
 
-
-
         if(response.ok) {
           // recuperer le boutton supprimer qui a un identifiant similaire que l'id du projet 
           const element = document.querySelector(`#delete_${id}`)
+          const element2 = document.querySelector(`#img_${id}`)
           // recuperer le parent le plus proche avec la class .gallery-item
           const parent = element.closest('.gallery-item')
+          const parent2 = element2.closest('.gallery-item2')
           // supprimer le parent qui est dans notre cas la figure 
           parent.remove();
+          parent2.remove();
 
           // la meme chose mais avec les elements de la page d'accueil 
           // TODO: ajouter l'id du projet comme identifiant pour chaque figure 
@@ -565,9 +580,18 @@ function deleteWork() {
 }
 }
 
-// Attacher les écouteurs d'événements pour les boutons de suppression lors du chargement de la page
-deleteWork();
+// Fonction pour ajouter les gestionnaires d'événements de suppression
+function addDeleteEventListeners() {
+  const deleteButtons = document.getElementsByClassName("edit-button");
+
+  for (let i = 0; i < deleteButtons.length; i++) {
+    const deleteButton = deleteButtons[i];
+    deleteButton.addEventListener("click", async function(e) {
+      // Le code pour supprimer l'élément
+    });
+  }
 }
+
 
 // Formulaire pour supprimer une photo
 //document.querySelector("edit-button").removeEventListener("button", handleFormDelete);
