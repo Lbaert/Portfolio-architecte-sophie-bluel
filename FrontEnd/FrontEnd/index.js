@@ -115,19 +115,6 @@ function generateGallery(works) {
     span.onclick = function() {
       modalProjet.style.display = "none";
     };
-
-      // recuperer le boutton supprimer qui a un identifiant similaire que l'id du projet 
-      //const element = document.querySelector(`#img_${id}`)
-      // recuperer le parent le plus proche avec la class .gallery-item2
-      //const parent = element.closest('.gallery-item2')
-      // supprimer le parent qui est dans notre cas la figure 
-      //parent.remove();
-
-       // recuperer la figure qui a l'identifiant du projet supprimé 
-      //const figure = document.querySelector(`${id}`)
-      // supprimer la figure
-      //figure.remove();
-  
   }
 }
 
@@ -457,6 +444,7 @@ async function handleFormSubmit(e) {
 
     // Réinitialisation du formulaire
     document.getElementById("form_photo").reset();
+    deleteWork();
   } catch (error) {
     console.log(error);
   }
@@ -544,6 +532,7 @@ function deleteWork() {
         });
         console.log(response)
 
+
         if(response.ok) {
           // recuperer le boutton supprimer qui a un identifiant similaire que l'id du projet 
           const element = document.querySelector(`#delete_${id}`)
@@ -554,28 +543,14 @@ function deleteWork() {
           // supprimer le parent qui est dans notre cas la figure 
           parent.remove();
           parent2.remove();
-
-          // la meme chose mais avec les elements de la page d'accueil 
-          // TODO: ajouter l'id du projet comme identifiant pour chaque figure 
-           // recuperer la figure qui a l'identifiant du projet supprimé 
+          // recuperer la figure qui a l'identifiant du projet supprimé 
           const figure = document.querySelector(`${id}`)
           // supprimer la figure
           figure.remove();
       }
-
-      // Récupérer les données de la galerie mise à jour
-   //   const works = await fetch("http://localhost:5678/api/works").then((response) => response.json());
-
-      // Générer la nouvelle galerie en utilisant les données mises à jour
-     // const target = document.querySelector(".gallery");
-     // target.innerText = "";
-    //  generateGallery(works);
     } catch (error) {
       console.log(error);
     }
-   // const target2 = document.querySelector(".modale_gallery");
-   // target2.innerText = "";
-    //getWorksModal();
   });
 }
 }
@@ -592,7 +567,3 @@ function addDeleteEventListeners() {
   }
 }
 
-
-// Formulaire pour supprimer une photo
-//document.querySelector("edit-button").removeEventListener("button", handleFormDelete);
-//document.querySelector("edit-button").addEventListener("button", handleFormDelete);
