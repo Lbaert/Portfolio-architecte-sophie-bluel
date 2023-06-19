@@ -6,7 +6,7 @@ async function getWorks() {
   let worksToDisplay = await works.json(); // Conversion de la réponse en JSON
   console.log(works.status); // Affichage du statut de la requête dans la console
   console.log(worksToDisplay); // Affichage des travaux récupérés dans la console
-  generateGallery(worksToDisplay); // Génération de la galerie avec les travaux récupérés
+  generateGalleryInHomepage(worksToDisplay); // Génération de la galerie avec les travaux récupérés
 
 ///
 
@@ -20,7 +20,7 @@ boutonAll.addEventListener("click", function() {
         return work.category.id === 1 || work.category.id === 2 || work.category.id === 3;
     });
     document.querySelector(".gallery").innerText = "";
-    generateGallery(worksAll);
+    generateGalleryInHomepage(worksAll);
     // Suppression de la classe "active" pour tous les boutons
     document.querySelectorAll("#filters button").forEach(function(btn) {
         btn.classList.remove("active");
@@ -36,7 +36,7 @@ boutonObjets.addEventListener("click", function() {
         return work.category.id === 1;
     });
     document.querySelector(".gallery").innerText = "";
-    generateGallery(worksObjets);
+    generateGalleryInHomepage(worksObjets);
     // Suppression de la classe "active" pour tous les boutons
     document.querySelectorAll(".filters button").forEach(function(btn) {
         btn.classList.remove("active");
@@ -52,7 +52,7 @@ boutonAppartements.addEventListener("click", function() {
         return work.category.id === 2;
     });
     document.querySelector(".gallery").innerText = "";
-    generateGallery(worksAppartements);
+    generateGalleryInHomepage(worksAppartements);
     // Suppression de la classe "active" pour tous les boutons
     document.querySelectorAll(".filters button").forEach(function(btn) {
         btn.classList.remove("active");
@@ -68,7 +68,7 @@ boutonHotelresto.addEventListener("click", function() {
         return work.category.id === 3;
     });
     document.querySelector(".gallery").innerText = "";
-    generateGallery(worksHotelresto);
+    generateGalleryInHomepage(worksHotelresto);
     // Suppression de la classe "active" pour tous les boutons
     document.querySelectorAll(".filters button").forEach(function(btn) {
         btn.classList.remove("active");
@@ -80,7 +80,7 @@ boutonHotelresto.addEventListener("click", function() {
 ///
 
 // Fonction génération projet
-function generateGallery(works) {
+function generateGalleryInHomepage(works) {
   const galleryElement = document.querySelector(".gallery");
   // Efface le contenu existant de l'élément uniquement si c'est la première génération de la galerie
   if (galleryElement.innerHTML === "") {
@@ -253,13 +253,13 @@ async function getWorksModal() {
   let worksToDisplay = await works.json(); // Conversion de la réponse en JSON
   console.log(works.status); // Affichage du statut de la requête dans la console
   console.log(worksToDisplay); // Affichage des travaux récupérés dans la console
-  generateGallery2(worksToDisplay); // Génération de la galerie dans la modale en utilisant les travaux récupérés
+  generateGalleryInModal(worksToDisplay); // Génération de la galerie dans la modale en utilisant les travaux récupérés
 }
 
 ///
 
 
-function generateGallery2(works) {
+function generateGalleryInModal(works) {
   const galleryElement = document.querySelector(".modale_gallery");
   galleryElement.innerHTML = ""; // Efface le contenu existant de l'élément
 
@@ -311,7 +311,7 @@ deleteWork();
 async function updateGallery() {
   const response = await fetch('http://localhost:5678/api/works');
   const works = await response.json();
-  generateGallery(works);
+  generateGalleryInHomepage(works);
 }
 
 
