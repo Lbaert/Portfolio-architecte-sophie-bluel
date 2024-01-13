@@ -1,34 +1,14 @@
 # Projet 3 OpenClassrooms : Portfolio de Sophie Bluel
 
+![image](https://github.com/Lbaert/Projet3-SophieBluel/assets/88725071/cc925847-287c-4161-bd92-780616f1b553)
 
+## Description
 
-## Scénario
-*Vous travaillez comme développeur front-end pour l’agence ArchiWebos qui comprend 50 salariés.*
+Ce projet a pour objectif de créer une page web dynamique en utilisant JavaScript. Le portfolio de Sophie Bluel est conçu pour mettre en valeur ses compétences, ses projets et son parcours professionnel de manière interactive et esthétique.
 
-*Ayant terminé votre dernier projet avec un peu d'avance, vous êtes envoyé en renfort comme développeur front-end d’une équipe qui travaille sur la conception du site portfolio d’une architecte d’intérieur.*
+## Installation
 
-*Nous sommes lundi matin et c’est l’heure de votre premier brief d’équipe pour ce projet.*
-
-*Vous savez que vous allez recevoir beaucoup d’informations, vous vous préparez donc à prendre des notes.*
-
-
-
-## Guide étapes clés
-- `Étape 0 : Installez l’environnement de développement` 🟢
-
-- `Étape 1 : Créez la page de présentation des travaux à partir du HTML existant` 🟢
-
-- `Étape 2 : Codez la page de connexion` 🟢
-
-- `Étape 3 : Ajoutez la modale` 🟢
-
-- `Étape 4 : Vérifiez l’ensemble du projet et s’assurer du traitement des erreurs dans les formulaires` 🟢
-
-
-
-## Missions:
-la page de présentation des travaux de l'architecte (à partir du HTML fourni)
-
-la page de connexion de l'administrateur du site (le client) (code à créer de zéro)
-
-la modale permettant d'uploader de nouveaux médias (code à créer from scratch)
+1. Téléchargez le code depuis ce dépôt.
+2. Ouvrez le projet dans Visual Studio Code (VSCode) ou tout autre éditeur de texte de votre choix.
+3. Lancez le projet en utilisant l'extension "Live Server" de VSCode ou tout autre moyen de votre choix.
+4. Accédez à l'adresse suivante dans votre navigateur : [http://127.0.0.1:5500/Frontend/FrontEnd/index.html](http://127.0.0.1:5500/Frontend/FrontEnd/index.html)
